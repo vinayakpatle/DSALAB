@@ -1,0 +1,56 @@
+#include<iostream>
+using namespace std;
+
+struct node{
+    string name;
+    int count;
+    struct node *child[5];
+} *root;
+
+class Book{
+    public:
+        Book(){
+            root=NULL;
+        }
+
+        void create(){
+            root=new node;
+            cout<<"Enter book name:";
+            cin>>root->name;
+            cout<<"Enter how many chapter do you want to add:";
+            cin>>root->count;
+            for(int i=1; i<=root->count; i++){
+                root->child[i]=new node;
+                cout<<"Enter chapter "<<i<<" name:";
+                cin>>root->child[i]->name;
+                cout<<"Enter how many section do you want to add:";
+                cin>>root->child[i]->count;
+                for(int j=1; j<=root->child[i]->count; j++){
+                    root->child[i]->child[j]=new node();
+                    cout<<"Enter section "<<j<<" name:";
+                    cin>>root->child[i]->child[j]->name;
+                }
+            }
+        }
+
+        void display(){
+            cout<<root->name<<endl;
+            for(int i=0; i<root->count; i++){
+                //cout<<"hFERE 1"<<endl;
+                cout<<root->child[i]->name<<" "<<endl;
+                //cout<<"hERE2"<<endl;
+                for(int j=0; j<root->child[i]->count; j++){
+                    cout<<root->child[i]->child[j]->name<<" "<<endl;
+                }
+            }
+        }
+};
+
+int main(){
+        Book B;
+        B.create();
+        B.display();
+
+
+    return 0;
+}

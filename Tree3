@@ -38,7 +38,7 @@ class Book{
             for(int i=0; i<root->count; i++){
                 cout<<"  "<<root->child[i]->name<<endl;
                 for(int j=0; j<root->child[i]->count; j++){
-                    cout<<"    "root->child[i]->child[j]->name<<endl;
+                    cout<<"    "<<root->child[i]->child[j]->name<<endl;
                 }
             }
         }

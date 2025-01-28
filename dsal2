@@ -1,0 +1,113 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+
+class Student{
+    string name;
+    int rollno;
+    char div;
+    string add;
+
+    public:
+        void setData(){
+            cout<<"Enter name of student: ";
+            cin.ignore();
+            getline(cin,name);
+            cout<<"Enter rollno of student: ";
+            cin>>rollno;
+            cout<<"Enter division of student: ";
+            cin>>div;
+            cout<<"Enter address of student: ";
+            cin.ignore();
+            getline(cin,add);
+        }
+
+        void getData(){
+            cout<<"Name of student: "<<name<<endl;
+            cout<<"rollno of student: "<<rollno<<endl;
+            cout<<"division of student: "<<div<<endl;
+            cout<<"address of student: "<<add<<endl;
+        }
+
+        int getRollno(){
+            return rollno;
+        }
+
+};
+
+void writeF(){
+    ofstream fout;
+    Student s1;
+    fout.open("student.dat",ios::binary | ios::app);
+    s1.setData();
+    fout.write((char*)&s1,sizeof(s1));
+    fout.close();
+}
+
+void readF(){
+    ifstream fin;
+    Student s1;
+    fin.open("student.dat",ios::in);
+    while(fin.read((char*)&s1,sizeof(s1))){
+        s1.getData();
+    }
+    fin.close();
+}
+
+void search(){
+    ifstream fin;
+    Student s1;
+    int roll;
+    bool found =false;
+    cout<<"Enter rollno for search: ";
+    cin>>roll;
+    while(fin.read((char*)&s1,sizeof(s1))){
+        if(s1.getRollno()==roll){
+            cout<<"REcord found"<<endl;
+            found=true;
+            break;
+        }
+    }
+    fin.close();
+
+    if(found==false){
+        cout<<"Record not found"<<endl;
+    }
+}
+
+// void delete(){
+
+// }
+
+int main(){
+    int ch;
+    do{
+        cout<<"1.write data"<<endl<<"2.read data"<<endl<<"3.search"<<endl<<"4.delete"<<endl<<"5.exit"<<endl;
+        cout<<"Enter choice: ";
+        cin>>ch;
+
+        if(ch==1){
+            writeF();
+        }
+        else if(ch==2){
+            readF();
+        }
+        else if(ch==3){
+            search();
+        }
+        else if(ch==4){
+            //delete();
+        }
+        else if(ch==5){
+            cout<<"THanks for using program"<<endl;
+        }
+        else{
+            cout<<"please enter valid choice"<<endl;
+        }
+    }while(ch!=5);
+    
+
+
+    return 0;
+}

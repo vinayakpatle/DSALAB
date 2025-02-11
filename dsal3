@@ -1,0 +1,59 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+    public:
+        int data;
+        Node* left;
+        Node* right;
+};
+
+class tree{
+    public:
+    Node* root=new Node();
+
+    Node* createRoot(){
+        cout<<"Enter root node data: ";
+        cin>>root->data;
+        root->left=NULL;
+        root->right=NULL;
+        return root;
+    }
+
+    void insert(Node* root,int tempData){
+        Node* t=new Node();
+        t->data=tempData;
+        if(root->data<t->data){
+            if(root->left==NULL){
+                root->left=t;
+            }else{
+                insert(root->left,tempData);
+            }
+        }else{
+            if(root->right==NULL){
+                root->right=t;
+            }else{
+                insert(root->right,tempData);
+            }
+        }
+    }
+
+    void display(Node* root){
+        if(root==NULL){
+            return;
+        }
+        display(root->left);
+        cout<<root->data<<" ";
+        display(root->right);
+    }
+};
+
+int main(){
+    tree obj;
+    Node* root=obj.createRoot();
+    obj.insert(root,4);
+    obj.insert(root,6);
+    obj.display(root);
+
+    return 0;
+}

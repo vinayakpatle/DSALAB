@@ -10,7 +10,7 @@ void bfs(int graph[5][5], int start, string loc[5])
     queue<int> q;
     q.push(start);
     int n = sizeof(graph[0]) / sizeof(graph[0][0]);
-    cout<<"BFS of graph is: ";
+    cout<<"BFS of graph: ";
     while (!q.empty())
     {
         int current = q.front();
@@ -38,7 +38,7 @@ void dfs(int graph[5][5], int start, string loc[5])
     stack<int> s;
     s.push(start);
     int n = sizeof(graph[0]) / sizeof(graph[0][0]);
-    cout << "\nDFS of graph is: ";
+    cout << "\nDFS of graph: ";
     while (!s.empty())
     {
         int current = s.top();

@@ -1,0 +1,46 @@
+#include<iostream>
+using namespace std;
+
+void createGraph(int **graph,string cities[],int n){
+    //int n=sizeof(graph[0])/graph[0][0];
+    for(int i=0; i<n; i++){
+        for(int j=i; j<n; j++){
+            int t;
+            cout<<"Enter time required to fligth between "+cities[i]+" to "+cities[j]+" : ";
+            cin>>t;
+            graph[i][j]=t;
+            graph[j][i]=t;
+            cout<<endl;
+        }
+    }
+}
+
+void printGraph(int **graph,string *cities,int n){
+    //int n=sizeof(graph[0])/graph[0][0];
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            cout<<graph[i][j]<<" ";
+        }cout<<endl;
+        
+    }
+}
+
+
+int main(){
+    int n;
+    cout<<"Enter no of cities: ";
+    cin>>n;
+    string *cities=new string[n];
+    cout<<"Enter cities: ";
+    for(int i=0; i<n; i++){
+        cin>>cities[i];
+    }
+    int **graph=new int*[n];
+    for (int i = 0; i < n; ++i) {
+        graph[i] = new int[n];
+    }
+    createGraph(graph,cities,n);
+    printGraph(graph,cities,n);
+
+    return 0;
+}
